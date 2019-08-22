@@ -120,3 +120,21 @@ void loop() {
 
   delay(5000); 
 }
+
+
+
+[IoT] Mqtt broker - Kafka - ELK 스택 셋팅
+https://itzone.tistory.com/722
+
+Using Logstash to index MQTT from Mosquitto
+https://discuss.elastic.co/t/using-logstash-to-index-mqtt-from-mosquitto/161181
+
+아두이노 - MQTT 사용하기
+https://twinw.tistory.com/176
+
+MQTT로 통신한 값 JSON을 사용해서 파싱 해보기
+https://m.blog.naver.com/PostView.nhn?blogId=roboholic84&logNo=221238141049&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+
+
+https://midnightcow.tistory.com/36
+https://itzone.tistory.com/722
