@@ -1,0 +1,81 @@
+1. JVM Install
+   1-1. Java SE Development Kit 설치
+        http://www.oracle.com/technetwork/java/javase/downloads/index.html
+   1-2. 설정
+        환경변수 설정
+        https://blog.naver.com/wideeyed/221018884225
+
+2. Elastic Install
+   2.1. Install Guide
+        https://www.elastic.co/guide/en/beats/libbeat/6.1/elasticsearch-installation.html
+   2.2. Download
+        https://www.elastic.co/downloads/elasticsearch
+   2.3. elasticsearch.bat execution(관리자 권한 실행)
+        C:\Program Files\elasticsearch-7.3.0\bin
+   2.4. WebBrowser 실행
+        http://127.0.0.1:9200/
+        
+
+3. Logstash 설치
+  3.1. Install Guide 
+       https://www.elastic.co/guide/en/beats/libbeat/6.1/logstash-installation.html
+  3.2. Download     
+       https://www.elastic.co/downloads/logstash
+  3.3. Logstash.conf 설정
+       # [Beats input plugin]
+       # listen on port 5044 for incoming Beats connections
+       input {
+         beats {
+           port => 5044
+        }
+      }
+ 
+ 
+      # The filter part of this file is commented out to indicate that it is
+      # optional.
+      # filter {
+      #
+      # }
+ 
+ 
+      # [Elasticsearch output plugin]
+      # index into Elasticsearch
+      output {
+        elasticsearch {
+           hosts => "localhost:9200"
+             manage_template => false
+               index => "%{[@metadata][beat]}-%{[@metadata][version]}-%{+YYYY.MM.dd}" 
+        }
+      }
+      
+  3.4. Logstash 실행
+       C:\logstash-7.3.0\bin\logstash.bat -f logstash.conf
+       
+       
+4. KIBANA 설치
+  4.1. Install Guide 
+       https://www.elastic.co/guide/en/beats/libbeat/6.1/kibana-installation.html
+  4.2. Download     
+       https://www.elastic.co/downloads/kibana
+  4.3. kibana.bat Execution
+       C:\Program Files\kibana-6.1.1-windows-x86_64\bin\kibana.bat 
+  4.4. WebBrowser Execution    
+       http://127.0.0.1:5601/
+       
+5. filebeat 설치
+  5.1. Install Guide 
+       https://www.elastic.co/guide/en/beats/filebeat/6.1/filebeat-getting-started.html
+  5.2. Download     
+       https://www.elastic.co/downloads/beats/filebeat
+  5.3. filebeat YAML Setting
+       filebeat.yml
+  5.4. filebeat 실행      
+       C:\Program Files\filebeat-7.3.0\filebeat.exe -c filebeat.yml -e -v
+         
+  5.5. Tomcat Install
+       http://blog.naver.com/wideeyed/220863535945
+       
+ ※ https://bit.ly/2ZjjrdS
+ 
+       
+      
