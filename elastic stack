@@ -50,9 +50,15 @@ $ vi access_log.conf
 $ wget https://artifacts.elastic.co/downloads/kibana/kibana-7.3.1-linux-x86_64.tar.gz
 $ tar -zxvf kibana-7.3.1-linux-x86_64.tar.gz
 
+3.1. 설정 변경
 vi config/kibana.yml 
 server.host: "0.0.0.0"
 
+3.2. 실행
+./bin/kibana
+
+3.3. 구동 여부 확인
+http://localhost:5601
 
 
 
