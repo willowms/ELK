@@ -60,8 +60,21 @@ server.host: "0.0.0.0"
 3.3. 구동 여부 확인
 http://localhost:5601
 
+4. Beats 구성
+# curl -L -O https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-7.3.1-linux-x86_64.tar.gz
+# tar xzvf packetbeat-7.3.1-linux-x86_64.tar.gz
+# cd packetbeat-7.3.1
+
+4.1. 소유권 변경(실행 계정과 소유 계정이 동일해야함. 동일하지 않을 경우 오류 발생)
+# sudo chown -R root:root .
+
+4.2. Kibana Dashboard(packetbeat) 초기화(템플릿 로드)
+# sudo ./packetbeat setup -e
+
+4.3 구동
+# sudo ./packetbeat -e
 
 
 
 
-
+https://miiingo.tistory.com/216
