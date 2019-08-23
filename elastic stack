@@ -1,0 +1,38 @@
+
+
+1. Elasticsearch 설치
+   
+$ https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.1-linux-x86_64.tar.gz
+$ tar zxvf elasticsearch-7.3.1-linux-x86_64.tar.gz
+$ ln -s elasticsearch-7.3.1 elasticsearch
+
+$ cd elasticsearch/conf
+$ vi elasticsearch.yml
+  path.data: /~~~/data/elasticsearch (기본경로에서 변경할때추가)
+  path.logs: /~~~/logs/elasticsearch
+  network.host: 0.0.0.0 # 외부에서 접근이 가능하도록 (실제 ip를 적어줘도 됨)
+
+$ cd ../bin
+$ echo './elasticsearch -d -p es.pid' > start.sh
+$ echo 'kill `cat es.pid`' > stop.sh
+$ chmod 755 start.sh stop.sh
+
+1.1 WebBrowser 확인
+http://localhost:9200 
+
+2. Logstash 설치
+$ wget https://artifacts.elastic.co/downloads/logstash/logstash-7.3.1.tar.gz
+$ tar -zxvf logstash-7.3.1.tar.gz
+$ ln -s logstash-7.3.1 logstash
+
+logstash가 실행될때 설정값 파일을 만들어준다.
+$ cd logstash/config
+$ vi access_log.conf
+# beats 에서 5044 port 로 데이터를 input 받겠다는 의미
+input { 
+        beats { 
+                port => "5044"
+        }
+}
+
+  
