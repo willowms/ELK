@@ -1,7 +1,8 @@
 0. JAVA 설치
    https://www.oracle.com/technetwork/java/javase/overview/index.html
    http://ubuntuhandbook.org/index.php/2019/03/install-oracle-java-12-ubuntu-18-04-16-04/
-   
+
+0.1. oracle java12 install
 $ sudo add-apt-repository ppa:linuxuprising/java //실패
 $ sudo apt-get update
 $ sudo apt-get install oracle-java12-installer
@@ -10,7 +11,35 @@ $ java -version
 
 if uninstall,
 $ sudo apt-get remove oracle-java12-installer
-   
+
+0.2. /etc/profile 추가
+export JAVA_HOME=/usr/lib/jvm/java-12-oracle
+export PATH=$JAVA_HOME/bin:$PATH
+export CLASS_PATH=$JAVA_HOME/lib:$CLASS_PATH
+
+0.3 wget 설치 (++++)
+wget https://download.java.net/java/GA/jdk12.0.2/e482c34c86bd4bf8b56c0b35558996b9/10/GPL/openjdk-12.0.2_linux-x64_bin.tar.gz
+sudo mkdir /usr/java
+mv openjdk-12.0.2_linux-x64_bin.tar.gz /usr/java
+cd /usr/java
+sudo tar -xzvf openjdk-12.0.2_linux-x64_bin.tar.gz
+
+sudo nano /etc/profile
+
+JAVA_HOME=/usr/java/jdk-12.0.2
+PATH=$PATH:$HOME/bin:$JAVA_HOME/bin
+export JAVA_HOME
+export JRE_HOME
+export PATH
+
+
+sudo update-alternatives --install "/usr/bin/java" "java" "/usr/java/jdk-12.0.2/bin/java" 1
+sudo update-alternatives --install "/usr/bin/javac" "javac" "/usr/java/jdk-12.0.2/bin/javac" 1
+
+java -version
+
+
+
 1. Elasticsearch 설치
    
 $ https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.1-linux-x86_64.tar.gz
@@ -32,10 +61,12 @@ $ chmod 755 start.sh stop.sh
 http://localhost:9200 
 
 2. Logstash 설치
+2.1. wget
 $ wget https://artifacts.elastic.co/downloads/logstash/logstash-7.3.1.tar.gz
 $ tar -zxvf logstash-7.3.1.tar.gz
 $ ln -s logstash-7.3.1 logstash
 
+2.2. 설정
 logstash가 실행될때 설정값 파일을 만들어준다.
 $ cd logstash/config
 $ vi access_log.conf
@@ -45,6 +76,9 @@ $ vi access_log.conf
                 port => "5044"
         }
   }
+
+2.3. 기동
+./bin/logstash -f config/logstash.conf
 
 3. Kibana 설치
 $ wget https://artifacts.elastic.co/downloads/kibana/kibana-7.3.1-linux-x86_64.tar.gz
