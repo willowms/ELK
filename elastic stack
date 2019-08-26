@@ -103,7 +103,7 @@ http://localhost:5601
 # sudo chown -R root:root .
 
 4.2. Kibana Dashboard(packetbeat) 초기화(템플릿 로드)
-# sudo ./packetbeat setup -e
+# sudo ./metricbeat setup -e
 
 4.3 구동
 # sudo ./packetbeat -e
